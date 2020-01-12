@@ -115,6 +115,9 @@ class LandmarkLetterboxRemovalCalculator : public CalculatorBase {
       new_landmark->set_y(new_y);
       // Keep z-coord as is.
       new_landmark->set_z(landmark.z());
+
+      //std::cout << "X " << new_x << std::endl;
+      //std::cout << "Y " << new_y << std::endl;
     }
 
     cc->Outputs()

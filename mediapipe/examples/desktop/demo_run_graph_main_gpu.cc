@@ -34,6 +34,8 @@ constexpr char kInputStream[] = "input_video";
 constexpr char kOutputStream[] = "output_video";
 constexpr char kWindowName[] = "MediaPipe";
 
+static int i = 0;
+
 DEFINE_string(
     calculator_graph_config_file, "",
     "Name of file containing text format CalculatorGraphConfig proto.");
@@ -165,7 +167,15 @@ DEFINE_string(output_video_path, "",
       }
       writer.write(output_frame_mat);
     } else {
-      cv::imshow(kWindowName, output_frame_mat);
+      //cv::imshow(kWindowName, output_frame_mat);
+      std::string path = "/home/ezhang/SBHacks/HandsfreeTV/gesture_recognition/imageBuffer/tmp_frame_" + std::to_string(i) + ".jpg";
+      cv::imwrite(path, output_frame_mat);
+      std::cout << "Saving to... " << path << std::endl;
+      i++;
+      if (i == 5) {
+        i = 0;
+      }
+
       // Press any key to exit.
       const int pressed_key = cv::waitKey(5);
       if (pressed_key >= 0 && pressed_key != 255) grab_frames = false;
